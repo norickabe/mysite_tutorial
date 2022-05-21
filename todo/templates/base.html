@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}TODO{% endblock %}</title>
+    </head>
+    <div class="header">
+    <header>
+        <h1>TODO LIST</h1>
+        <div class="openbth">
+            <span>
+            </span>
+            <span>
+            </span>
+            <span>
+            </span>
+        </div>
+        <nav id="g-nav">
+            <div id="g-nav-list">
+                <ul>
+                    <li><a href="{% url 'todo:top' %}">Top</a></li>
+                    <li><a href="{% url 'todo:post_list' %}">Todo List</a></li>
+                </ul>
+            </div>
+        </nav>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" 
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" 
+        crossorigin="anonymous"></script>
+        <script src="{% static 'js/base.js' %}"></script>
+    </header>
+    </div>
+    <div class="body">
+    <body>
+        {% block body %}{% endblock %}
+    </body>
+    </div>
+</html>

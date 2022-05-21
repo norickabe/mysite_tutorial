@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}TODO List{% endblock %}
+
+{% block body %}
+<link href="{% static 'css/post_list.css' %}" rel="stylesheet">
+<table>
+    <tr>
+        <th>
+            title
+        </th>
+        <th>
+            author
+        </th>
+        <th>
+            worker
+        </th>
+        <th>
+            cerated_at
+        </th>
+        <th>
+            updated_at
+        </th>
+    </tr>
+    {% for post in posts %}
+    <tr>
+        <td>
+            {{ post.title }}
+        </td>
+        <td>
+            {{ post.author }}
+        </td>
+        <td>
+            {{ post.worker }}
+        </td>
+        <td>
+            {{ post.created_at }}
+        </td>
+        <td>
+            {{ post.updated_at }}
+        </td>
+    </tr>    
+    {% empty %}
+        データがありませんでした。
+    {% endfor %}
+    </table>
+    <div class="pagination-center">
+        <ul class="pagination">
+            {% if posts.has_previous %}
+                <li><a href="?page={{ posts.previous_page_number }}">&#x2190;</a></li> <!--左矢印-->
+            {% endif %}
+            <!--span-->
+                <!--{{ posts.number }} / {{ posts.paginator.num_pages }}-->
+            <!--/span-->
+            {% for page_num in posts.paginator.page_range %}
+                {% if posts.number == page_num %}
+                    <li>{{ page_num }}</li>
+                {% else %}
+                    <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if posts.has_next %}
+                <li><a href="?page={{ posts.next_page_number }}">&#x2192;</a></li> <!--右矢印-->
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}
